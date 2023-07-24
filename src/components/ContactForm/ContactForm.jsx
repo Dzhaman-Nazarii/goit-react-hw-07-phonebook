@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 
 import { useDispatch, useSelector} from "react-redux";
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors'
 
 export default function ContactForm() {
@@ -14,23 +14,23 @@ export default function ContactForm() {
     evt.preventDefault();
     const form = evt.target;
 
-    const includeContact = contacts.find(contact => contact.nameValue.toLowerCase() === form.elements.name.value.toLowerCase());
+    const includeContact = contacts.find(contact => contact.name.toLowerCase() === form.elements.name.value.toLowerCase());
 
     if (!includeContact) {
-      const nameValue = form.elements.name.value;
-      const numberValue = form.elements.number.value;
+      const name = form.elements.name.value;
+      const phone = form.elements.number.value;
 
-      if (nameValue.trim() === '' || numberValue.trim() === '') {
+      if (name.trim() === '' || phone.trim() === '') {
         alert(`Please enter the contact's name and number.`)
         return;
       }
 
-      const idValue = nanoid();
+      const id = nanoid();
 
       dispatch(addContact({
-        nameValue,
-        numberValue,
-        idValue
+        name,
+        phone,
+        id
       }));
     } else {
       alert(`A contact with the name ${form.elements.name.value} already exists`);

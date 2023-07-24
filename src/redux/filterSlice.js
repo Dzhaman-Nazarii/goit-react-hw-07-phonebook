@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const filterInitialState = '';
+
 const filterSlice = createSlice({
   name: 'filter',
-  initialState: '',
+  initialState: filterInitialState,
   reducers: {
     filter: (state, action) => {
       return action.payload;
@@ -12,10 +14,3 @@ const filterSlice = createSlice({
 
 export const { filter } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
-
-// export const searchFilter = filter => {
-//   return {
-//     type: 'filter/searchFilter',
-//     payload: filter,
-//   };
-// };
