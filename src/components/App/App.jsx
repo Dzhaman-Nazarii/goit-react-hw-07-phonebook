@@ -19,9 +19,9 @@ export default function App() {
 
   return (
     <div>
+      {isLoading && !error && <b>Request in progress...</b>}
       <h1>Phonebook</h1>
       <ContactForm />
-      {isLoading && !error && <b>Request in progress...</b>}
       <h2>Contacts</h2>
       <Filter />
       <ContactList />
